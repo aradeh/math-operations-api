@@ -58,8 +58,9 @@ public class MathOperations {
 
     public double calculatePercentile(List<Integer> numberList, Integer rank){
         int length = numberList.size();
-        double percentile = ( (double)(rank * 100) / (double)length ); 
-
-        return percentile;
+        Collections.sort(numberList);
+        double quantifier = Math.abs(rank / 100.00);
+        long index = Math.round(quantifier * length);
+        return numberList.get((int)index - 1 );
     }
 }

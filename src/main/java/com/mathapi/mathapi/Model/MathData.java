@@ -44,6 +44,9 @@ public class MathData {
     @Column( name = "medianValue", columnDefinition = "double precision")
     private double median;
 
+    @Column( name = "percentileValue", columnDefinition = "double precision")
+    private double percentile;
+
     public long getId() {
         return this.id;
     }
@@ -90,6 +93,14 @@ public class MathData {
 
     public void setMedian(double median) {
         this.median = median;
+    }
+
+    public double getPercentile() {
+        return this.percentile;
+    }
+
+    public void setPercentile(double percentile) {
+        this.percentile = percentile;
     }
 
 }

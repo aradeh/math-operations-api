@@ -56,4 +56,11 @@ public class MathController {
         this.mathdataRepository.save(mathdata);
         return ResponseEntity.ok().body(mathdata.getMedian());
     }
+
+    @GetMapping("percentile")
+    public ResponseEntity<?> getPercentile(@RequestBody MathData mathdata){
+        mathdata.setPercentile(mathoperations.calculatePercentile(mathdata.getNumberList(), mathdata.getQuantifier()));
+        this.mathdataRepository.save(mathdata);
+        return ResponseEntity.ok().body(mathdata.getPercentile());
+    }
 }
