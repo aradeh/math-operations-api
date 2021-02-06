@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
 
+import com.fasterxml.jackson.core.json.DupDetector;
+
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -52,5 +54,12 @@ public class MathOperations {
             return (double)numberList.get(length/2);
         }
         return (double) (numberList.get((length - 1)/2) + numberList.get(length/2)) / 2.0;
+    }
+
+    public double calculatePercentile(List<Integer> numberList, Integer rank){
+        int length = numberList.size();
+        double percentile = ( (double)(rank * 100) / (double)length ); 
+
+        return percentile;
     }
 }

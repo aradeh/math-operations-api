@@ -24,8 +24,25 @@ import java.util.ArrayList;
 public class MathData {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private long id;
+
+    @Type(type = "list-array")
+    @Column( name = "numberList" , columnDefinition = "bigint[]")
+    private List<Integer> numberList;
+
+    @Column ( name = "quantifier",columnDefinition = "bigint")
+    private Integer quantifier;
+   
+    @Type(type = "list-array")
+    @Column( name = "result" , columnDefinition = "bigint[]")
+    private List<Integer> result;
+
+    @Column( name = "averageValue", columnDefinition = "double precision")
+    private double average;
+
+    @Column( name = "medianValue", columnDefinition = "double precision")
+    private double median;
 
     public long getId() {
         return this.id;
@@ -35,10 +52,6 @@ public class MathData {
         this.id = id;
     }
 
-    @Type(type = "list-array")
-    @Column( name = "numberList" , columnDefinition = "bigint[]")
-    private List<Integer> numberList;
-
     public List<Integer> getNumberList() {
         return this.numberList;
     }
@@ -47,21 +60,6 @@ public class MathData {
         this.numberList = numberList;
     }
 
-    @Column ( name = "limit")
-    private Integer limit;
-
-    public Integer getLimit() {
-        return this.limit;
-    }
-
-    public void setLimit(Integer limit) {
-        this.limit = limit;
-    }
-
-    @Type(type = "list-array")
-    @Column( name = "result" , columnDefinition = "bigint[]")
-    private List<Integer> result;
-
     public List<Integer> getResult() {
         return this.result;
     }
@@ -69,6 +67,29 @@ public class MathData {
     public void setResult(List<Integer> result) {
         this.result = result;
     }
-    
+
+    public Integer getQuantifier() {
+        return this.quantifier;
+    }
+
+    public void setQuantifier(Integer quantifier) {
+        this.quantifier = quantifier;
+    }
+
+    public double getAverage() {
+        return this.average;
+    }
+
+    public void setAverage(double average) {
+        this.average = average;
+    }
+
+    public double getMedian() {
+        return this.median;
+    }
+
+    public void setMedian(double median) {
+        this.median = median;
+    }
 
 }

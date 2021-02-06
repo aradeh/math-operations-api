@@ -9,6 +9,7 @@ import com.mathapi.mathapi.service.MathOperations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,29 +25,35 @@ public class MathController {
     @Autowired
     private MathOperations mathoperations;
 
-    public MathController(MathDataRepository mathdataRepository) { this.mathdataRepository = mathdataRepository;}   
-    
+    public MathController(MathDataRepository mathdataRepository) {
+        this.mathdataRepository = mathdataRepository;
+    }
 
     @GetMapping("min")
     public ResponseEntity<?> getMinimum(@RequestBody MathData mathdata){
-        //return ResponseEntity.ok(mathoperations.calculateMinium(mathdata.getNumberList(),mathdata.getLimit()));     
-        return ResponseEntity.ok().body(mathoperations.calculateMinium(mathdata.getNumberList(),mathdata.getLimit()));  
+        mathdata.setResult(mathoperations.calculateMinium(mathdata.getNumberList(),mathdata.getQuantifier()));
+        this.mathdataRepository.save(mathdata);
+        return ResponseEntity.ok().body(mathdata.getResult());
     }
 
     @GetMapping("max")
     public ResponseEntity<?> getMaximum(@RequestBody MathData mathdata){
-        //return ResponseEntity.ok(mathoperations.calculateMax(mathdata.getNumberList(),mathdata.getLimit()));
-        return ResponseEntity.ok().body(mathoperations.calculateMax(mathdata.getNumberList(),mathdata.getLimit()));
+        mathdata.setResult(mathoperations.calculateMax(mathdata.getNumberList(),mathdata.getQuantifier()));;
+        this.mathdataRepository.save(mathdata);
+        return ResponseEntity.ok().body(mathdata.getResult());
     }
 
     @GetMapping("avg")
     public ResponseEntity<Double> getAverage(@RequestBody MathData mathdata){
-        //return ResponseEntity.ok( mathoperations.calculateAverage(mathdata.getNumberList()));
-        return ResponseEntity.ok().body(mathoperations.calculateAverage(mathdata.getNumberList()));
+        mathdata.setAverage(mathoperations.calculateAverage(mathdata.getNumberList()));
+        this.mathdataRepository.save(mathdata);
+        return ResponseEntity.ok().body(mathdata.getAverage());
     }
 
     @GetMapping("median")
     public ResponseEntity<?> getMedian(@RequestBody MathData mathdata){
-        return ResponseEntity.ok().body(mathoperations.calculateMedian(mathdata.getNumberList()) );
+        mathdata.setMedian(mathoperations.calculateMedian(mathdata.getNumberList()));
+        this.mathdataRepository.save(mathdata);
+        return ResponseEntity.ok().body(mathdata.getMedian());
     }
 }
