@@ -22,6 +22,8 @@ OR
 mvn spring-boot:run
 ```
 
+Applicaton will run on `http://localhost:8080`
+
 ## Usage
 1. `/min` accepts two arguments, List of numbers and a quantifier value from the body of the request.
 ```
