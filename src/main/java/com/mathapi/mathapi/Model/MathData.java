@@ -58,17 +58,17 @@ public class MathData {
         this.limit = limit;
     }
 
-    @Column ( name = "result")
-    private float result;
+    @Type(type = "list-array")
+    @Column( name = "result" , columnDefinition = "bigint[]")
+    private List<Integer> result;
 
-    public float getResult() {
+    public List<Integer> getResult() {
         return this.result;
     }
 
-    public void setResult(float result) {
+    public void setResult(List<Integer> result) {
         this.result = result;
     }
-
     
 
 }
