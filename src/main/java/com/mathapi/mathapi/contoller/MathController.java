@@ -44,4 +44,9 @@ public class MathController {
         //return ResponseEntity.ok( mathoperations.calculateAverage(mathdata.getNumberList()));
         return ResponseEntity.ok().body(mathoperations.calculateAverage(mathdata.getNumberList()));
     }
+
+    @GetMapping("median")
+    public ResponseEntity<?> getMedian(@RequestBody MathData mathdata){
+        return ResponseEntity.ok().body(mathoperations.calculateMedian(mathdata.getNumberList()) );
+    }
 }

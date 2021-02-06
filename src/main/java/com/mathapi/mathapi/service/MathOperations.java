@@ -44,4 +44,13 @@ public class MathOperations {
         return ( (double) sum / (double) numberList.size());
 	}
     
+    public double calculateMedian(List<Integer> numberList){
+        int length = numberList.size();
+        Collections.sort(numberList);
+
+        if(length % 2 != 0){
+            return (double)numberList.get(length/2);
+        }
+        return (double) (numberList.get((length - 1)/2) + numberList.get(length/2)) / 2.0;
+    }
 }
